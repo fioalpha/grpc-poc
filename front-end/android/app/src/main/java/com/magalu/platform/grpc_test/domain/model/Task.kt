@@ -1,4 +1,8 @@
 package com.magalu.platform.grpc_test.domain.model
 
-class Task {
-}
+data class Task (
+    val id: Int,
+    val title: String,
+    val description: String,
+    val date: String
+)
