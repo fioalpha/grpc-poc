@@ -1,0 +1,19 @@
+{
+  "name": "poc-grpc",
+  "version": "1.0.0",
+  "description": "This project the POC using RPC how communication between client-server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fioalpha/grpc-poc.git"
+  },
+  "author": "fioalpha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fioalpha/grpc-poc/issues"
+  },
+  "homepage": "https://github.com/fioalpha/grpc-poc#readme"
+}
