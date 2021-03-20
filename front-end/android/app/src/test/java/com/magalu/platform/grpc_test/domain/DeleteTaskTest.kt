@@ -4,8 +4,8 @@ import com.magalu.platform.grpc_test.data.Repository
 import com.magalu.platform.grpc_test.domain.model.Task
 import io.mockk.every
 import io.mockk.mockk
-import io.reactivex.rxjava3.core.Single
 import junit.framework.TestCase
+import io.reactivex.Single
 
 import org.junit.Assert.*
 import org.junit.Test

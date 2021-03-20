@@ -6,7 +6,7 @@ import com.magalu.platform.grpc_test.domain.GetAllTask
 import com.magalu.platform.grpc_test.domain.model.Task
 import com.magalu.platform.grpc_test.view.list.view.TaskListState
 import com.magalu.platform.grpc_test.view.list.view.TaskView
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.Observable
 
 class TaskListViewModel (
     private val getAllTask: GetAllTask
@@ -14,7 +14,7 @@ class TaskListViewModel (
 
     private val tasks = mutableListOf<Task>()
 
-    fun loadTask(): Observable<TaskListState>{
+    fun loadTask(): Observable<TaskListState> {
         return getAllTask.getAll().toObservable()
             .doOnNext {
                 tasks.clear()

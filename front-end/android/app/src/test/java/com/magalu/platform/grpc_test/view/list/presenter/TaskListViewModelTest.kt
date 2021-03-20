@@ -8,8 +8,8 @@ import com.magalu.platform.grpc_test.view.list.view.TaskListState
 import com.magalu.platform.grpc_test.view.list.view.TaskView
 import io.mockk.every
 import io.mockk.mockk
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Test
 
@@ -18,8 +18,7 @@ class TaskListViewModelTest {
     private val allTaskMock = mockk<GetAllTask>()
     private val deleteTask = mockk<DeleteTask>()
     private val taskListViewModel = TaskListViewModel(
-        allTaskMock,
-        deleteTask
+        allTaskMock
     )
 
     @Test
