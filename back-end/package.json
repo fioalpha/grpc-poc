@@ -4,7 +4,8 @@
   "description": "This project the POC using RPC how communication between client-server",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/fioalpha/grpc-poc/issues"
   },
-  "homepage": "https://github.com/fioalpha/grpc-poc#readme"
+  "homepage": "https://github.com/fioalpha/grpc-poc#readme",
+  "dependencies": {
+    "grpc": "^1.24.6"
+  }
 }
