@@ -1,7 +1,5 @@
 package com.magalu.platform.grpc_test.view.list.presenter
 
-import androidx.annotation.VisibleForTesting
-import com.magalu.platform.grpc_test.domain.DeleteTask
 import com.magalu.platform.grpc_test.domain.GetAllTask
 import com.magalu.platform.grpc_test.domain.model.Task
 import com.magalu.platform.grpc_test.view.list.view.TaskListState
@@ -22,8 +20,6 @@ class TaskListViewModel (
             }
             .map (::transform)
             .onErrorReturn (::handlerError)
-            .cast(TaskListState::class.java)
-            .startWith(Observable.just(TaskListState.LOADING))
     }
 
     private fun transform(data: List<Task>): TaskListState {
