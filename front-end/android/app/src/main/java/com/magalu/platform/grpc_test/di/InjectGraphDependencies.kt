@@ -8,6 +8,8 @@ import com.magalu.platform.grpc_test.data.datasource.protopof.ProtoServices
 import com.magalu.platform.grpc_test.data.datasource.protopof.ProtoServicesImpl
 import com.magalu.platform.grpc_test.domain.GetAllTask
 import com.magalu.platform.grpc_test.domain.GetAllTaskImpl
+import com.magalu.platform.grpc_test.navigation.Navigator
+import com.magalu.platform.grpc_test.navigation.NavigatorImpl
 import com.magalu.platform.grpc_test.view.list.presenter.TaskListViewModel
 
 private const val HOST = "165.232.147.56"
@@ -17,6 +19,10 @@ object InjectGraphDependencies {
 
     fun viewModelProvider(): TaskListViewModel {
         return TaskListViewModel(getTaskAllUseCaseProvider())
+    }
+
+    fun navigationProvider(): Navigator {
+        return NavigatorImpl
     }
 
     private fun getTaskAllUseCaseProvider(): GetAllTask {

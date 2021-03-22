@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grpctest">
         <activity android:name=".MainActivity">
+
+        </activity>
+
+        <activity android:name=".view.create.CreateTaskActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

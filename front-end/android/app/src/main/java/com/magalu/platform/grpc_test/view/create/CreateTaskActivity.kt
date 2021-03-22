@@ -1,31 +1,26 @@
-package com.magalu.platform.grpc_test
+package com.magalu.platform.grpc_test.view.create
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.animation.ExperimentalAnimationApi
 import com.magalu.platform.grpc_test.di.InjectGraphDependencies
+import com.magalu.platform.grpc_test.view.create.components.FormCreateTask
 import com.magalu.platform.grpc_test.view.list.components.MainContainer
-import com.magalu.platform.grpc_test.view.list.components.TaskViewContainer
-import com.magalu.platform.grpc_test.view.list.presenter.TaskListViewModel
 
-class MainActivity : AppCompatActivity() {
-
-    private val viewModel: TaskListViewModel by lazy { InjectGraphDependencies.viewModelProvider() }
-
-    @ExperimentalAnimationApi
+class CreateTaskActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MainContainer(
-                content = { TaskViewContainer(viewModel = viewModel) },
+                content = { FormCreateTask() },
                 floatButtonAction = {
                     InjectGraphDependencies.navigationProvider()
                         .goNewTask(this)
                 },
+                isFloatButtonShow = false
             )
         }
-    }
 
+    }
 }
