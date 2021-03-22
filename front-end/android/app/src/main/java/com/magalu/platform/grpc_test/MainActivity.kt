@@ -11,7 +11,7 @@ import com.magalu.platform.grpc_test.view.list.presenter.TaskListViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: TaskListViewModel by lazy { InjectGraphDependencies.viewModel() }
+    private val viewModel: TaskListViewModel by lazy { InjectGraphDependencies.viewModelProvider() }
 
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {

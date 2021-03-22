@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "com.magalu.platform.grpc_test";
+option java_outer_classname = "TaskProto";
+
+message TaskT {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  string date = 4;
+}
+
+message TaskList {
+  repeated TaskT tasks = 1;
+}
+
+message Empty {}
+
+service TaskService {
+  rpc List(Empty) returns (TaskList);
+  rpc Save(TaskT) returns (TaskList);
+}
+
+

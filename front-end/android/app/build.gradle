@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.protobuf'
 }
 
 android {
@@ -38,6 +39,14 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion '1.0.0-beta01'
+    }
+
+    sourceSets {
+        main {
+            proto {
+                srcDir "$projectDir/src/proto"
+            }
+        }
     }
 
 }
@@ -79,4 +88,57 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.0.0-beta02'
 
     implementation "androidx.compose.ui:ui-tooling:1.0.0-beta02"
+
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    implementation 'io.grpc:grpc-okhttp:1.25.0' // CURRENT_GRPC_VERSION
+    implementation 'io.grpc:grpc-protobuf-lite:1.25.0' // CURRENT_GRPC_VERSION
+    implementation 'io.grpc:grpc-stub:1.25.0' // CURRENT_GRPC_VERSION
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+}
+
+//protobuf {
+//    generatedFilesBaseDir = "$projectDir/src/proto/test"
+//    protoc {
+//        artifact = "com.google.protobuf:protoc:3.12.0"
+//    }
+//    plugins {
+//        grpc {
+//            artifact = "io.grpc:protoc-gen-grpc-java:1.30.0"
+//        }
+//    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                remove javanano
+//                java {
+//                    option 'lite'
+//                }
+//            }
+//
+//            task.plugins {
+//                grpc {
+//                    // Options added to --grpc_out
+//                    option 'lite'
+//                }
+//            }
+//        }
+//    }
+//}
+
+protobuf {
+    generatedFilesBaseDir = "$projectDir/src/main"
+    protoc { artifact = 'com.google.protobuf:protoc:3.12.0' }
+    plugins {
+        javalite { artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0" }
+        grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.25.0' // CURRENT_GRPC_VERSION
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                javalite {}
+                grpc { option 'lite' }
+            }
+        }
+    }
 }

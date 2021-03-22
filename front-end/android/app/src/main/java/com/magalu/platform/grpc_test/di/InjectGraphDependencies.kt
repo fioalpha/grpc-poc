@@ -1,47 +1,38 @@
 package com.magalu.platform.grpc_test.di
 
 import com.magalu.platform.grpc_test.data.Repository
+import com.magalu.platform.grpc_test.data.RepositoryImpl
+import com.magalu.platform.grpc_test.data.datasource.protopof.ProtoDataSource
+import com.magalu.platform.grpc_test.data.datasource.protopof.ProtoDataSourceImpl
+import com.magalu.platform.grpc_test.data.datasource.protopof.ProtoServices
+import com.magalu.platform.grpc_test.data.datasource.protopof.ProtoServicesImpl
 import com.magalu.platform.grpc_test.domain.GetAllTask
 import com.magalu.platform.grpc_test.domain.GetAllTaskImpl
-import com.magalu.platform.grpc_test.domain.model.Task
 import com.magalu.platform.grpc_test.view.list.presenter.TaskListViewModel
-import io.reactivex.Single
-import java.util.concurrent.TimeUnit
+
+private const val HOST = "165.232.147.56"
+private const val PORT = 50051
 
 object InjectGraphDependencies {
 
-    fun viewModel(): TaskListViewModel {
-        return TaskListViewModel(getTaskAllUseCase())
+    fun viewModelProvider(): TaskListViewModel {
+        return TaskListViewModel(getTaskAllUseCaseProvider())
     }
 
-    private fun getTaskAllUseCase(): GetAllTask {
-        return GetAllTaskImpl(object : Repository {
-            override fun getAllTasks(): Single<List<Task>> {
-                return Single.just(
-                    listOf(
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test"),
-                        Task(1,  "Test", "Test", "test")
-                    )
-                ).delay(1, TimeUnit.SECONDS)
-            }
-
-            override fun deleteTask(task: Task): Single<Task> {
-                TODO("Not yet implemented")
-            }
-
-            override fun saveTask(task: Task): Single<Task> {
-                TODO("Not yet implemented")
-            }
-        })
+    private fun getTaskAllUseCaseProvider(): GetAllTask {
+        return GetAllTaskImpl(repositoryProvider())
     }
 
+    private fun protoServiceProvider(): ProtoServices {
+        return ProtoServicesImpl(HOST, PORT)
+    }
+
+    private fun protoDataSourceProvider(): ProtoDataSource {
+        return ProtoDataSourceImpl(protoServiceProvider())
+    }
+
+    private fun repositoryProvider(): Repository {
+        return RepositoryImpl(protoDataSourceProvider())
+    }
 
 }
